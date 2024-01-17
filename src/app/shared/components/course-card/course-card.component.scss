@@ -16,6 +16,7 @@
 
   &__description {
     flex: 2;
+    min-height: 200px;
 
     &-title {
       font-weight: bold;
@@ -28,14 +29,20 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 50px;
+    height: 150px;
 
     &-text {
-      margin-top: 16px;
+      margin-top: 0px;
     }
 
     &-actions {
       display: flex;
       justify-content: space-between;
     }
+  }
+  &__buttons {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
   }
 }

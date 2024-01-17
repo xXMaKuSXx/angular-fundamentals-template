@@ -11,7 +11,6 @@
   color: #fff;
   text-transform: uppercase;
   cursor: pointer;
-  width: fit-content;
   font-weight: 700;
 
   &:hover {
@@ -30,8 +29,25 @@
     background: #b5b5b5;
     cursor: not-allowed;
   }
-  
+
   &__single-icon {
     padding: 13px;
+  }
+
+  &__form {
+    width: 286px;
+  }
+
+  &__icon {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    color: grey;
+    background: none;
+
+    &:hover {
+      background: none;
+      color: #b5b5b5;
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FaIconLibrary } from "@fortawesome/angular-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faTrash, fas } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-course-form",
@@ -16,16 +16,24 @@ export class CourseFormComponent implements OnInit {
   // Use the names `title`, `description`, `author`, 'authors' (for authors list), `duration` for the form controls.
   ngOnInit(): void {
     this.courseForm = this.fb.group({
-      title: ["", [Validators.required]],
-      description: ["", [Validators.required]],
-      author: ["", [Validators.pattern(/^[a-zA-Z0-9 ]*$/)]],
+      title: ["", [Validators.required, Validators.minLength(2)]],
+      description: ["", [Validators.required, Validators.minLength(2)]],
+      author: [
+        "",
+        [Validators.pattern(/^[a-zA-Z0-9 ]*$/), , Validators.minLength(2)],
+      ],
       authors: this.fb.array([], [Validators.required]),
+      courseAuthors: this.fb.array([], [Validators.required]),
       duration: [0, [Validators.required, Validators.min(0)]],
     });
   }
 
   getAuthors(): FormArray {
     return this.courseForm.get("authors") as FormArray;
+  }
+
+  getCourseAuthors(): FormArray {
+    return this.courseForm.get("courseAuthors") as FormArray;
   }
 
   addAuthor() {
@@ -38,8 +46,16 @@ export class CourseFormComponent implements OnInit {
     this.courseForm.get("author")?.reset();
   }
 
+  addCourseAuthor(index: number) {
+    const authorsArray = this.getAuthors();
+    const courseAuthorsArray = this.getCourseAuthors();
+
+    const author = authorsArray.at(index).value;
+    courseAuthorsArray.push(this.fb.control(author));
+  }
+
   removeAuthor(index: number) {
-    (this.courseForm.get("authors") as FormArray).removeAt(index);
+    (this.courseForm.get("courseAuthors") as FormArray).removeAt(index);
   }
 
   onSubmit(): void {
@@ -47,6 +63,9 @@ export class CourseFormComponent implements OnInit {
   }
 
   cancel(): void {
-    this.courseForm.reset();
+    window.location.reload();
   }
+
+  deleteIcon = faTrash;
+  addIcon = faAdd;
 }
