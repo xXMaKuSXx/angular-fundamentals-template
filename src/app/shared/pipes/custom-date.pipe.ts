@@ -1,11 +1,10 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe } from "@angular/core";
 
 @Pipe({
   name: "customDate",
 })
-export class CustomDatePipe implements PipeTransform {
+export class CustomDatePipe {
   transform(value: string): string {
-    const [month, day, year] = value.split("/");
-    return `${day}.${month}.${year}`;
+    return value.replace("/", ".");
   }
 }

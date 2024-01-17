@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CoursesComponent } from "./features/courses/courses.component";
 import {
+  CourseFormComponent,
   LoginFormComponent,
   RegistrationFormComponent,
 } from "./shared/components";
@@ -16,6 +17,10 @@ export const routes: Routes = [
     component: LoginFormComponent,
   },
   { path: "registration", component: RegistrationFormComponent },
+  {
+    path: "course-form",
+    component: CourseFormComponent,
+  },
 ];
 
 @NgModule({

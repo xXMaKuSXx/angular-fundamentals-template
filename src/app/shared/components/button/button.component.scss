@@ -5,6 +5,7 @@
   align-items: center;
   padding: 13px 36px;
   gap: 10px;
+  border: none;
   background: #007298;
   border-radius: 4px;
   color: #fff;
@@ -25,6 +26,11 @@
     background: #016486;
   }
 
+  &:disabled {
+    background: #b5b5b5;
+    cursor: not-allowed;
+  }
+  
   &__single-icon {
     padding: 13px;
   }
